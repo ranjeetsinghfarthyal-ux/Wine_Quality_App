@@ -3,3 +3,6 @@ joblib
 scikit-learn
 streamlit
 pandas
+fastapi
+uvicorn
+python-multipart
