@@ -1,0 +1,608 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>VinoLab AI | Wine Quality</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', path='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header class="navbar">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                V
+            </div>
+
+            <div>
+                <div class="brand-name">
+                    VINOLAB
+                </div>
+
+                <div class="brand-subtitle">
+                    AI WINE INTELLIGENCE
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="system-status">
+
+            <span class="status-dot"></span>
+
+            MODEL ONLINE
+
+            <span class="status-divider">|</span>
+
+            LINEAR REGRESSION
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="container">
+
+
+        <!-- =================================================
+             LEFT SIDE
+        ================================================== -->
+
+        <section class="input-section">
+
+            <div class="eyebrow">
+                WINE QUALITY ANALYSIS
+            </div>
+
+            <h1>
+                Discover the
+                <span>character</span>
+                of your wine.
+            </h1>
+
+            <p class="intro">
+
+                Enter the chemical properties of your wine sample.
+                Our machine learning model will estimate its
+                quality score on a scale from 0 to 10.
+
+            </p>
+
+
+            <!-- =================================================
+                 FORM
+            ================================================== -->
+
+            <form
+                action="/predict"
+                method="POST"
+                id="wineForm"
+            >
+
+
+                <div class="parameter-grid">
+
+
+                    <!-- Fixed Acidity -->
+
+                    <div class="parameter-card">
+
+                        <label>
+                            Fixed Acidity
+                            <span>g/dm³</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            step="any"
+                            name="fixed_acidity"
+                            value="7.4"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Volatile Acidity -->
+
+                    <div class="parameter-card">
+
+                        <label>
+                            Volatile Acidity
+                            <span>g/dm³</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            step="any"
+                            name="volatile_acidity"
+                            value="0.70"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Citric Acid -->
+
+                    <div class="parameter-card">
+
+                        <label>
+                            Citric Acid
+                            <span>g/dm³</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            step="any"
+                            name="citric_acid"
+                            value="0.00"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Residual Sugar -->
+
+                    <div class="parameter-card">
+
+                        <label>
+                            Residual Sugar
+                            <span>g/dm³</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            step="any"
+                            name="residual_sugar"
+                            value="1.9"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Chlorides -->
+
+                    <div class="parameter-card">
+
+                        <label>
+                            Chlorides
+                            <span>g/dm³</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            step="any"
+                            name="chlorides"
+                            value="0.076"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Free SO2 -->
+
+                    <div class="parameter-card">
+
+                        <label>
+                            Free SO₂
+                            <span>mg/dm³</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            step="any"
+                            name="free_sulfur_dioxide"
+                            value="11"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Total SO2 -->
+
+                    <div class="parameter-card">
+
+                        <label>
+                            Total SO₂
+                            <span>mg/dm³</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            step="any"
+                            name="total_sulfur_dioxide"
+                            value="34"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Density -->
+
+                    <div class="parameter-card">
+
+                        <label>
+                            Density
+                            <span>g/cm³</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            step="any"
+                            name="density"
+                            value="0.9978"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- pH -->
+
+                    <div class="parameter-card">
+
+                        <label>
+                            pH
+                            <span>scale</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            step="any"
+                            name="pH"
+                            value="3.51"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Sulphates -->
+
+                    <div class="parameter-card">
+
+                        <label>
+                            Sulphates
+                            <span>g/dm³</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            step="any"
+                            name="sulphates"
+                            value="0.56"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Alcohol -->
+
+                    <div class="parameter-card">
+
+                        <label>
+                            Alcohol
+                            <span>% vol.</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            step="any"
+                            name="alcohol"
+                            value="9.4"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     BUTTONS
+                ================================================== -->
+
+                <div class="button-area">
+
+                    <button
+                        type="submit"
+                        class="analyze-button"
+                        id="analyzeButton"
+                    >
+
+                        <span>
+                            ◈
+                        </span>
+
+                        ANALYZE WINE SAMPLE
+
+                        <b>
+                            →
+                        </b>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="reset-button"
+                        id="resetButton"
+                    >
+                        RESET
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+
+        <!-- =================================================
+             RIGHT SIDE
+        ================================================== -->
+
+        <section class="result-section">
+
+
+            <div class="result-label">
+                ANALYSIS RESULT
+            </div>
+
+
+            <!-- =================================================
+                 WINE BOTTLE
+            ================================================== -->
+
+            <div class="wine-display">
+
+                <div class="bottle-shadow"></div>
+
+                <div class="wine-bottle">
+
+                    <div class="bottle-neck">
+
+                        <div class="bottle-cap"></div>
+
+                    </div>
+
+                    <div class="bottle-body">
+
+                        <div class="bottle-label">
+
+                            <div class="label-small">
+                                VINOLAB
+                            </div>
+
+                            <div class="label-title">
+                                AI
+                            </div>
+
+                            <div class="label-line"></div>
+
+                            <div class="label-text">
+                                QUALITY
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     SCORE
+                ================================================== -->
+
+                <div class="score-container">
+
+                    {% if prediction is not none %}
+
+                    <div
+                        class="score-ring"
+                        style="--score: {{ prediction * 10 }}%;"
+                    >
+
+                        <div class="score-inner">
+
+                            <div class="score-number">
+                                {{ "%.2f"|format(prediction) }}
+                            </div>
+
+                            <div class="score-out-of">
+                                / 10
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="quality-label">
+                        {{ quality_label|upper }}
+                    </div>
+
+                    <div class="quality-title">
+                        Wine Quality Score
+                    </div>
+
+                    <p class="quality-message">
+                        {{ quality_message }}
+                    </p>
+
+
+                    {% else %}
+
+                    <div class="score-ring empty">
+
+                        <div class="score-inner">
+
+                            <div class="score-number">
+                                --.--
+                            </div>
+
+                            <div class="score-out-of">
+                                / 10
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="quality-label">
+                        AWAITING SAMPLE
+                    </div>
+
+                    <div class="quality-title">
+                        Wine Quality Score
+                    </div>
+
+                    <p class="quality-message">
+                        Enter the 11 wine parameters and analyze
+                        your sample.
+                    </p>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SCALE
+            ================================================== -->
+
+            <div class="quality-scale">
+
+                <div class="scale-header">
+
+                    <span>LOW QUALITY</span>
+
+                    <span>HIGH QUALITY</span>
+
+                </div>
+
+                <div class="scale-bar">
+
+                    <div class="scale-marker"></div>
+
+                </div>
+
+                <div class="scale-numbers">
+
+                    <span>0</span>
+                    <span>2</span>
+                    <span>4</span>
+                    <span>6</span>
+                    <span>8</span>
+                    <span>10</span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 MODEL INFORMATION
+            ================================================== -->
+
+            <div class="model-card">
+
+                <div>
+
+                    <span class="model-icon">
+                        AI
+                    </span>
+
+                    <div>
+                        <small>MODEL</small>
+                        <strong>Linear Regression</strong>
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <small>FEATURES</small>
+                    <strong>11 Parameters</strong>
+
+                </div>
+
+
+                <div>
+
+                    <small>OUTPUT</small>
+                    <strong>Quality Score</strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        VINOLAB AI
+        <span>•</span>
+        WINE QUALITY PREDICTION
+        <span>•</span>
+        FASTAPI + MACHINE LEARNING
+
+    </footer>
+
+
+    <script
+        src="{{ url_for('static', path='script.js') }}"
+    ></script>
+
+</body>
+
+</html>
